@@ -50,10 +50,12 @@ public class CommonMethodSignaturesTest {
     public void getParameterlessCommonMethodSignaturesSameTestClasses() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.HashMap");
-
+        List<String> methodsToAvoid = new ArrayList<>(
+                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
+        );
         List<ParsedMethodSignature> parsedParameterlessMethodSignatureListForClassOne = new ArrayList<>();
         for (Method method : testClassOne.getMethods()){
-            if(method.getParameters().length == 0){
+            if(method.getParameters().length == 0 && !methodsToAvoid.contains(method.getName())){
                 ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
                 parsedParameterlessMethodSignatureListForClassOne.add(parsedMethodSignature);
             }
