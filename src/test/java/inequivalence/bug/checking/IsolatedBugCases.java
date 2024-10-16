@@ -2,7 +2,6 @@ package inequivalence.bug.checking;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -12,7 +11,8 @@ public class IsolatedBugCases {
 
     @Test
     public void testHashMapValuesAndLinkedHashMapValuesCase(){
-        // Not sure if this is a bug.
+        // Not sure if this is a bug. This was derived through the invocation of random parameterless methods
+        // on both a HashMap and LinkedHashMap (containing the same values).
         // Error arises in comparison between .values() between the two map types.
         // hashMap.values() -> Values type, linkedHashMap.values() -> LinkedValues type;
         // The above are not considered equal.

@@ -95,7 +95,6 @@ public class MainTest {
                 assertDefaultContract(returnValueFromClassOne, returnValueFromClassTwo, classOneObject, classTwoObject);
             }
             catch (InvocationTargetException e){
-                // e.printStackTrace();
                 System.out.println(e);
             }
         }

@@ -15,8 +15,7 @@ public class AckermannInequivalenceFuzzTesting {
 
     @Fuzz
     public void ackermannComparison(int m, int n) {
-        // assumeTrue(m >= 0 && n >= 0);
-//        System.out.println(m + " " + n);
+        assumeTrue(m >= 0 && n >= 0);
         boolean originalAckermannResultsInDivergence = false;
         int originalResult = Integer.MIN_VALUE;
         try {
