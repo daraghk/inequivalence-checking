@@ -15,7 +15,7 @@ import static inequivalence.src.main.Utils.getParameterlessMethodsForClass;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JQF.class)
-public class MapComparisons {
+public class MapComparisonsStringKeyValues {
 
     private final String[] listOfMaps = {
             "java.util.HashMap",
@@ -247,4 +247,5 @@ public class MapComparisons {
                 parameterlessMethodsFromClassTwo, classTwoObject
         );
     }
+
 }
