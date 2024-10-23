@@ -40,6 +40,22 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.pholser/junit-quickcheck-core -->
+        <dependency>
+            <groupId>com.pholser</groupId>
+            <artifactId>junit-quickcheck-core</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.pholser/junit-quickcheck-generators -->
+        <dependency>
+            <groupId>com.pholser</groupId>
+            <artifactId>junit-quickcheck-generators</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>

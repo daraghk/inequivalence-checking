@@ -1,9 +1,11 @@
-package inequivalence.src.main;
+package inequivalence.src.main.maps;
 
+import com.pholser.junit.quickcheck.From;
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import inequivalence.src.CommonMethodSignatures;
 import inequivalence.src.ParsedMethodSignature;
+import inequivalence.src.main.generators.RandomActionsGenerator;
 import org.junit.Assume;
 import org.junit.runner.RunWith;
 
@@ -30,13 +32,13 @@ public class MapComparisonsStringKeyValues {
 
     @Fuzz
     public void compareHashMapToLinkedHashMapUsingRandomParameterlessMethods(
-            HashMap<Integer, Integer> hashMap,
-            ArrayList<Integer> randomActions
+            HashMap<String, String> hashMap,
+            @From(RandomActionsGenerator.class) List<Integer> randomActions
     ) throws
             ClassNotFoundException,
             IllegalAccessException
     {
-        LinkedHashMap<Integer, Integer> linkedHashMap = new LinkedHashMap<>();
+        LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.putAll(hashMap);
 
         // Create Classes for the data structures passed in
@@ -68,7 +70,7 @@ public class MapComparisonsStringKeyValues {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -76,7 +78,7 @@ public class MapComparisonsStringKeyValues {
                 .forEach(Assume::assumeTrue);
 
         executeRandomParameterlessMethods(
-                randomActions,
+                (ArrayList<Integer>) randomActions,
                 listOfParameterlessCommonMethodSignatures,
                 parameterlessMethodsFromClassOne, classOneObject,
                 parameterlessMethodsFromClassTwo, classTwoObject
@@ -85,13 +87,13 @@ public class MapComparisonsStringKeyValues {
 
     @Fuzz
     public void compareHashMapToTreeMapUsingRandomParameterlessMethods(
-            HashMap<Integer, Integer> hashMap,
+            HashMap<String, String> hashMap,
             ArrayList<Integer> randomActions
     ) throws
             ClassNotFoundException,
             IllegalAccessException
     {
-        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        TreeMap<String, String> treeMap = new TreeMap<>();
         treeMap.putAll(hashMap);
 
         // Create Classes for the data structures passed in
@@ -123,7 +125,7 @@ public class MapComparisonsStringKeyValues {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -140,13 +142,13 @@ public class MapComparisonsStringKeyValues {
 
     @Fuzz
     public void compareHashMapToWeakHashMapUsingRandomParameterlessMethods(
-            HashMap<Integer, Integer> hashMap,
+            HashMap<String, String> hashMap,
             ArrayList<Integer> randomActions
     ) throws
             ClassNotFoundException,
             IllegalAccessException
     {
-        WeakHashMap<Integer, Integer> weakHashMap = new WeakHashMap<>();
+        WeakHashMap<String, String> weakHashMap = new WeakHashMap<>();
         weakHashMap.putAll(hashMap);
 
         // Create Classes for the data structures passed in
@@ -178,7 +180,7 @@ public class MapComparisonsStringKeyValues {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -195,13 +197,13 @@ public class MapComparisonsStringKeyValues {
 
     @Fuzz
     public void compareHashMapToHashtableUsingRandomParameterlessMethods(
-            HashMap<Integer, Integer> hashMap,
+            HashMap<String, String> hashMap,
             ArrayList<Integer> randomActions
     ) throws
             ClassNotFoundException,
             IllegalAccessException
     {
-        Hashtable<Integer, Integer> hashtable = new Hashtable<>();
+        Hashtable<String, String> hashtable = new Hashtable<>();
         hashtable.putAll(hashMap);
 
         // Create Classes for the data structures passed in
@@ -233,7 +235,7 @@ public class MapComparisonsStringKeyValues {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0

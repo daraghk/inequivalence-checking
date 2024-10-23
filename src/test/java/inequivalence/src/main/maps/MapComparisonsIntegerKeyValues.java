@@ -1,11 +1,12 @@
-package inequivalence.src.main;
+package inequivalence.src.main.maps;
 
+import com.pholser.junit.quickcheck.From;
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import inequivalence.src.CommonMethodSignatures;
 import inequivalence.src.ParsedMethodSignature;
+import inequivalence.src.main.generators.RandomActionsGenerator;
 import org.junit.Assume;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 import java.lang.reflect.Method;
@@ -16,7 +17,7 @@ import static inequivalence.src.main.Utils.getParameterlessMethodsForClass;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JQF.class)
-public class MapComparisons {
+public class MapComparisonsIntegerKeyValues {
 
     private final String[] listOfMaps = {
             "java.util.HashMap",
@@ -32,7 +33,7 @@ public class MapComparisons {
     @Fuzz
     public void compareHashMapToLinkedHashMapUsingRandomParameterlessMethods(
             HashMap<Integer, Integer> hashMap,
-            ArrayList<Integer> randomActions
+            @From(RandomActionsGenerator.class) List<Integer> randomActions
     ) throws
             ClassNotFoundException,
             IllegalAccessException
@@ -69,7 +70,7 @@ public class MapComparisons {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -77,7 +78,7 @@ public class MapComparisons {
                 .forEach(Assume::assumeTrue);
 
         executeRandomParameterlessMethods(
-                randomActions,
+                (ArrayList<Integer>) randomActions,
                 listOfParameterlessCommonMethodSignatures,
                 parameterlessMethodsFromClassOne, classOneObject,
                 parameterlessMethodsFromClassTwo, classTwoObject
@@ -124,7 +125,7 @@ public class MapComparisons {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -182,7 +183,7 @@ public class MapComparisons {
         Assume.assumeTrue(randomActions.size() >= 0);
         randomActions.stream()
                 .map(integer ->
-                        integer.intValue() >= 0
+                        integer.intValue() > 0
                                 && integer.intValue() < listOfParameterlessCommonMethodSignatures.size())
                 .forEach(Assume::assumeTrue);
 
@@ -234,7 +235,7 @@ public class MapComparisons {
                 parameterlessCommonMethodSignatures);
 
         // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
+        Assume.assumeTrue(randomActions.size() > 0);
         randomActions.stream()
                 .map(integer ->
                         integer.intValue() >= 0
@@ -249,60 +250,4 @@ public class MapComparisons {
         );
     }
 
-    @Fuzz
-    @Ignore
-    public void compareHashMapToLinkedHashMapUsingRandomMethods(
-            HashMap<Integer, Integer> hashMap,
-            ArrayList<Integer> randomActions
-    ) throws
-            ClassNotFoundException,
-            IllegalAccessException
-    {
-        LinkedHashMap<Integer, Integer> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.putAll(hashMap);
-
-        // Create Classes for the data structures passed in
-        Class classOne = Class.forName(hashMap.getClass().getName());
-        Class classTwo = Class.forName(linkedHashMap.getClass().getName());
-
-        // Create Object types from the classes in question
-        Object classOneObject = hashMap;
-        Object classTwoObject = linkedHashMap;
-
-        // Collect the common method signatures and the parameterless common method signatures
-        CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(
-                classOne.getMethods(),
-                classTwo.getMethods());
-
-        // Collect the full parameterless methods for invocation from class one and two
-        // Todo: the equivalent will need to be done here for common methods with parameters also
-        HashMap<String, Method> parameterlessMethodsFromClassOne = getParameterlessMethodsForClass(classOne,
-                parameterlessCommonMethodSignatures);
-        HashMap<String, Method> parameterlessMethodsFromClassTwo = getParameterlessMethodsForClass(classTwo,
-                parameterlessCommonMethodSignatures);
-
-        // Assert that the number of methods from each class is the same
-        // Todo: change this to ensure that the size of the 'full' common method sets from each are equal
-        assertEquals(parameterlessMethodsFromClassOne.size(), parameterlessMethodsFromClassTwo.size());
-
-        // Create a list of the parameterlessCommonMethodSignatures so that they can be chosen easily
-        // Todo: create this same list but also for methods that have parameters
-        List<ParsedMethodSignature> listOfParameterlessCommonMethodSignatures = new ArrayList<>(
-                parameterlessCommonMethodSignatures);
-
-        // Create the necessary assumptions about the values in randomActions
-        Assume.assumeTrue(randomActions.size() >= 0);
-        randomActions.stream()
-                .map(integer ->
-                        integer.intValue() >= 0
-                                && integer.intValue() < listOfParameterlessCommonMethodSignatures.size())
-                .forEach(Assume::assumeTrue);
-
-        executeRandomParameterlessMethods(
-                randomActions,
-                listOfParameterlessCommonMethodSignatures,
-                parameterlessMethodsFromClassOne, classOneObject,
-                parameterlessMethodsFromClassTwo, classTwoObject
-        );
-    }
 }

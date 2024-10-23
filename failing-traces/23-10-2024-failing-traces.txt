@@ -1,0 +1,1704 @@
+[6, 3, 2]
+values
+[2, 6, 3]
+keySet
+values
+[6, 7, 7, 3]
+values
+[3, 7, 6]
+isEmpty
+size
+values
+[6, 2, 6, 1]
+values
+[6]
+values
+[2, 5, 6, 6, 6, 3]
+keySet
+entrySet
+values
+[6, 2]
+values
+[1, 2, 6]
+clone
+keySet
+values
+[6]
+values
+[7, 6, 2]
+size
+values
+[6, 1]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 1]
+values
+[6, 7, 6]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[6, 4]
+values
+[7, 4, 6, 3]
+size
+toString
+values
+[7, 6]
+size
+values
+[7, 3, 6, 2]
+size
+isEmpty
+values
+[6]
+values
+[6, 5]
+values
+[4, 2, 6, 3]
+toString
+keySet
+values
+[6]
+values
+[7, 4, 3, 6]
+size
+toString
+isEmpty
+values
+[6, 3]
+values
+[3, 6, 7, 3]
+isEmpty
+values
+[6, 7]
+values
+[2, 6]
+keySet
+values
+[2, 6, 6]
+keySet
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[6]
+values
+[4, 2, 6]
+toString
+keySet
+values
+[6, 2, 3]
+values
+[6]
+values
+[6]
+values
+[5, 6, 4]
+entrySet
+values
+[3, 6, 2]
+isEmpty
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[6]
+values
+[6, 7, 5]
+values
+[6, 7, 5]
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[6, 7]
+values
+[2, 6, 4]
+keySet
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6, 3, 1]
+values
+[6]
+values
+[3, 2, 6]
+isEmpty
+keySet
+values
+[6, 4]
+values
+[6]
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[6, 5, 2, 3, 1, 4, 5, 2]
+values
+[6, 2]
+values
+[1, 6]
+clone
+values
+[1, 6]
+clone
+values
+[6, 7]
+values
+[4, 6]
+toString
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 6, 5]
+values
+[6, 2]
+values
+[3, 6]
+isEmpty
+values
+[6]
+values
+[7, 4, 6]
+size
+toString
+values
+[6, 5]
+values
+[6]
+values
+[6, 4]
+values
+[2, 6, 1]
+keySet
+values
+[7, 6, 2]
+size
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[6, 1]
+values
+[6, 2]
+values
+[6, 2]
+values
+[6]
+values
+[6]
+values
+[6, 3]
+values
+[4, 6, 1]
+toString
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 2]
+values
+[3, 2, 7, 6, 5, 6, 2]
+isEmpty
+keySet
+size
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[4, 1, 6]
+toString
+clone
+values
+[5, 6]
+entrySet
+values
+[3, 2, 6]
+isEmpty
+keySet
+values
+[6, 7, 3]
+values
+[6, 2]
+values
+[6, 4]
+values
+[6, 1, 5, 6, 4, 2]
+values
+[6, 1]
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[4, 2, 6]
+toString
+keySet
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6]
+values
+[4, 6, 6, 5, 5]
+toString
+values
+[6, 7]
+values
+[6, 5, 1]
+values
+[1, 7, 3, 6]
+clone
+size
+isEmpty
+values
+[5, 5, 6, 4, 6, 7]
+entrySet
+entrySet
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[3, 3, 6]
+isEmpty
+isEmpty
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[6]
+values
+[6, 1, 6, 2]
+values
+[6]
+values
+[6]
+values
+[7, 6, 4, 3]
+size
+values
+[6]
+values
+[6]
+values
+[1, 2, 6, 5]
+clone
+keySet
+values
+[6, 4]
+values
+[2, 1, 4, 6]
+keySet
+clone
+toString
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 3]
+values
+[6, 6]
+values
+[4, 6]
+toString
+values
+[6]
+values
+[1, 5, 7, 6, 7, 7, 3]
+clone
+entrySet
+size
+values
+[6, 3]
+values
+[6]
+values
+[6]
+values
+[6, 5]
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[1, 6]
+clone
+values
+[3, 6, 4, 3]
+isEmpty
+values
+[1, 6, 2, 7]
+clone
+values
+[6, 7, 5]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 5]
+values
+[4, 6]
+toString
+values
+[7, 4, 6, 2]
+size
+toString
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[1, 5, 4, 6, 1]
+clone
+entrySet
+toString
+values
+[6]
+values
+[4, 6, 6]
+toString
+values
+[6, 1]
+values
+[6]
+values
+[6, 1]
+values
+[1, 4, 6, 6, 5]
+clone
+toString
+values
+[2, 6]
+keySet
+values
+[6, 1]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6, 7, 2]
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[2, 6, 1]
+keySet
+values
+[2, 6]
+keySet
+values
+[3, 5, 6]
+isEmpty
+entrySet
+values
+[6]
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[2, 2, 6, 6, 3]
+keySet
+keySet
+values
+[3, 2, 6, 2, 5, 1]
+isEmpty
+keySet
+values
+[7, 6]
+size
+values
+[6, 3, 4]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[5, 5, 6, 2, 2]
+entrySet
+entrySet
+values
+[6]
+values
+[7, 6, 6]
+size
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6, 3]
+values
+[3, 6]
+isEmpty
+values
+[3, 6]
+isEmpty
+values
+[1, 6, 2, 5]
+clone
+values
+[6]
+values
+[6]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6, 6]
+values
+[6]
+values
+[6, 4]
+values
+[6]
+values
+[6, 2]
+values
+[6, 4, 6]
+values
+[6, 1, 2]
+values
+[6]
+values
+[6]
+values
+[2, 7, 6]
+keySet
+size
+values
+[6, 4]
+values
+[6]
+values
+[6]
+values
+[2, 3, 6]
+keySet
+isEmpty
+values
+[6, 3]
+values
+[6, 6, 3]
+values
+[6]
+values
+[1, 6, 3, 7, 6, 1, 7]
+clone
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[3, 6, 1]
+isEmpty
+values
+[6]
+values
+[3, 3, 3, 5, 6, 6]
+isEmpty
+isEmpty
+isEmpty
+entrySet
+values
+[6, 4]
+values
+[2, 6]
+keySet
+values
+[2, 6, 7]
+keySet
+values
+[6, 1]
+values
+[3, 6, 7]
+isEmpty
+values
+[6, 7]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[2, 2, 6]
+keySet
+keySet
+values
+[6]
+values
+[6, 1]
+values
+[6]
+values
+[6, 3]
+values
+[1, 6]
+clone
+values
+[6, 6, 2]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 7, 4]
+values
+[4, 7, 6]
+toString
+size
+values
+[6, 5, 2]
+values
+[6]
+values
+[2, 1, 5, 3, 6]
+keySet
+clone
+entrySet
+isEmpty
+values
+[6]
+values
+[6, 4]
+values
+[5, 1, 6]
+entrySet
+clone
+values
+[6, 7, 6]
+values
+[6]
+values
+[6, 7]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 7]
+values
+[3, 6]
+isEmpty
+values
+[6, 2, 2]
+values
+[6, 4]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[6, 5, 4]
+values
+[6, 2, 6, 5]
+values
+[3, 6]
+isEmpty
+values
+[6, 4]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[7, 1, 6, 4]
+size
+clone
+values
+[6, 4]
+values
+[6, 1, 3, 7]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[3, 6, 2]
+isEmpty
+values
+[3, 6]
+isEmpty
+values
+[6]
+values
+[6, 2]
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6]
+values
+[6, 3]
+values
+[6, 2]
+values
+[0, 6]
+hashCode
+values
+[6, 0]
+values
+[6]
+values
+[6, 6, 1]
+values
+[6]
+values
+[6]
+values
+[6, 2, 0, 4]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6, 2, 2, 7, 1, 6]
+values
+[6, 6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[5, 6, 4]
+entrySet
+values
+[6, 6]
+values
+[6]
+values
+[6, 4, 1, 7, 5, 1, 6]
+values
+[6, 7]
+values
+[6]
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6, 1]
+values
+[7, 1, 0, 6]
+size
+clone
+hashCode
+values
+[6, 2, 6]
+values
+[6, 6]
+values
+[6]
+values
+[6]
+values
+[6, 0]
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[6, 2]
+values
+[6, 5, 7]
+values
+[6]
+values
+[4, 6, 3]
+toString
+values
+[6]
+values
+[6, 6, 6, 5, 4, 7, 7]
+values
+[0, 1, 4, 6]
+hashCode
+clone
+toString
+values
+[6, 6]
+values
+[6]
+values
+[6]
+values
+[6, 3]
+values
+[6]
+values
+[1, 4, 6, 2]
+clone
+toString
+values
+[6, 0]
+values
+[6, 5]
+values
+[6, 1]
+values
+[6]
+values
+[7, 5, 6, 3, 3, 4]
+size
+entrySet
+values
+[6, 5, 2, 4]
+values
+[7, 6]
+size
+values
+[2, 2, 3, 3, 2, 7, 6]
+keySet
+keySet
+isEmpty
+isEmpty
+keySet
+size
+values
+[0, 6, 4]
+hashCode
+values
+[6]
+values
+[6, 1]
+values
+[6, 1]
+values
+[6, 4]
+values
+[4, 2, 0, 4, 6]
+toString
+keySet
+hashCode
+toString
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 7]
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[6, 5, 4, 7]
+values
+[3, 6, 0, 5]
+isEmpty
+values
+[0, 2, 6]
+hashCode
+keySet
+values
+[6, 4]
+values
+[3, 6, 2, 7]
+isEmpty
+values
+[6]
+values
+[5, 5, 2, 7, 7, 1, 1, 6, 1]
+entrySet
+entrySet
+keySet
+size
+size
+clone
+clone
+values
+[6, 2]
+values
+[6]
+values
+[6, 7, 2, 7]
+values
+[6, 6]
+values
+[6]
+values
+[6]
+values
+[5, 0, 5, 6]
+entrySet
+hashCode
+entrySet
+values
+[6]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[6, 7]
+values
+[4, 1, 6]
+toString
+clone
+values
+[0, 5, 7, 6, 4]
+hashCode
+entrySet
+size
+values
+[4, 6]
+toString
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[5, 4, 6]
+entrySet
+toString
+values
+[6]
+values
+[6]
+values
+[6, 0]
+values
+[6, 3]
+values
+[1, 2, 6, 5, 7, 3, 0]
+clone
+keySet
+values
+[6, 1]
+values
+[6, 2, 5]
+values
+[6]
+values
+[4, 6, 5, 1]
+toString
+values
+[0, 6, 1]
+hashCode
+values
+[6]
+values
+[4, 6]
+toString
+values
+[6]
+values
+[6]
+values
+[6, 1]
+values
+[6, 1, 3]
+values
+[6]
+values
+[7, 6, 6]
+size
+values
+[5, 4, 2, 6]
+entrySet
+toString
+keySet
+values
+[6]
+values
+[5, 6, 5]
+entrySet
+values
+[6]
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[6]
+values
+[2, 6, 1]
+keySet
+values
+[5, 2, 6, 4]
+entrySet
+keySet
+values
+[6, 5, 2]
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[3, 6]
+isEmpty
+values
+[7, 6]
+size
+values
+[6]
+values
+[7, 3, 6]
+size
+isEmpty
+values
+[6, 2]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[2, 4, 6]
+keySet
+toString
+values
+[6, 0]
+values
+[6, 0, 3]
+values
+[6]
+values
+[6, 0]
+values
+[6, 3]
+values
+[6]
+values
+[4, 1, 4, 6]
+toString
+clone
+toString
+values
+[0, 6]
+hashCode
+values
+[6, 6]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6]
+values
+[6, 3, 4, 6]
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6]
+values
+[0, 1, 6]
+hashCode
+clone
+values
+[6]
+values
+[6]
+values
+[2, 6, 5]
+keySet
+values
+[6]
+values
+[6]
+values
+[6, 7, 0]
+values
+[6, 6]
+values
+[6, 0]
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[0, 4, 6, 7]
+hashCode
+toString
+values
+[0, 6]
+hashCode
+values
+[6, 1]
+values
+[6, 1, 4]
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6, 7, 1]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 5]
+values
+[5, 0, 2, 6]
+entrySet
+hashCode
+keySet
+values
+[7, 6, 7]
+size
+values
+[6, 6, 6, 2, 7]
+values
+[6, 6]
+values
+[6]
+values
+[6]
+values
+[1, 6]
+clone
+values
+[6, 0, 6, 3]
+values
+[6]
+values
+[5, 6, 0, 3]
+entrySet
+values
+[3, 0, 6]
+isEmpty
+hashCode
+values
+[6]
+values
+[1, 3, 6]
+clone
+isEmpty
+values
+[6]
+values
+[7, 6, 4]
+size
+values
+[6, 1]
+values
+[6, 7]
+values
+[6]
+values
+[4, 3, 7, 6, 2]
+toString
+isEmpty
+size
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[4, 6, 0, 1, 2]
+toString
+values
+[6, 5, 5, 5, 6]
+values
+[6]
+values
+[4, 6, 7]
+toString
+values
+[6, 5, 3, 7, 2, 2]
+values
+[6]
+values
+[1, 6]
+clone
+values
+[6, 5]
+values
+[1, 6]
+clone
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6, 5, 0]
+values
+[5, 3, 5, 6, 7]
+entrySet
+isEmpty
+entrySet
+values
+[6, 6]
+values
+[6, 6, 1]
+values
+[6, 0]
+values
+[6, 5, 6]
+values
+[6]
+values
+[6, 6, 1]
+values
+[6]
+values
+[6]
+values
+[0, 6]
+hashCode
+values
+[4, 6, 2]
+toString
+values
+[6, 5, 4]
+values
+[6, 2]
+values
+[6]
+values
+[6]
+values
+[6, 4]
+values
+[2, 7, 6]
+keySet
+size
+values
+[6]
+values
+[4, 6]
+toString
+values
+[4, 6]
+toString
+values
+[6, 5, 7]
+values
+[6, 2]
+values
+[3, 4, 6, 6]
+isEmpty
+toString
+values
+[3, 3, 6]
+isEmpty
+isEmpty
+values
+[4, 6, 4]
+toString
+values
+[7, 6]
+size
+values
+[6, 4, 1, 7]
+values
+[6]
+values
+[6]
+values
+[1, 6]
+clone
+values
+[6, 7, 5]
+values
+[4, 6]
+toString
+values
+[5, 6]
+entrySet
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[7, 6]
+size
+values
+[3, 6, 4]
+isEmpty
+values
+[7, 6]
+size
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 5, 6, 7, 7]
+values
+[3, 0, 6]
+isEmpty
+hashCode
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6, 0, 3]
+values
+[6]
+values
+[5, 6, 0, 0, 4, 2, 7]
+entrySet
+values
+[6, 6, 4, 6]
+values
+[6]
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6, 0, 6, 3]
+values
+[6]
+values
+[4, 6]
+toString
+values
+[7, 6]
+size
+values
+[6, 0]
+values
+[1, 6]
+clone
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 7]
+values
+[6, 3, 3]
+values
+[6]
+values
+[6]
+values
+[6, 1]
+values
+[1, 6]
+clone
+values
+[6, 7]
+values
+[6]
+values
+[6]
+values
+[0, 6]
+hashCode
+values
+[7, 6, 0]
+size
+values
+[7, 6]
+size
+values
+[2, 6, 5]
+keySet
+values
+[5, 6, 6]
+entrySet
+values
+[6, 2]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[6]
+values
+[6, 1, 3]
+values
+[1, 6, 6]
+clone
+values
+[7, 6, 3]
+size
+values
+[6]
+values
+[6]
+values
+[6, 5, 5]
+values
+[7, 6, 3, 0, 7]
+size
+values
+[2, 6, 3, 2]
+keySet
+values
+[3, 6]
+isEmpty
+values
+[1, 0, 6]
+clone
+hashCode
+values
+[6]
+values
+[3, 6, 0, 0, 0]
+isEmpty
+values
+[3, 6, 4]
+isEmpty
+values
+[6]
+values
+[6]
+values
+[2, 6]
+keySet
+values
+[6]
+values
+[4, 6]
+toString
+values
+[6]
+values
+[6]
+values
+[4, 6, 5, 4, 7]
+toString
+values
+[6]
+values
+[6]
+values
+[6, 0, 4]
+values
+[6, 1, 6]
+values
+[6]
+values
+[6, 6, 7, 1, 5, 1, 7]
+values
+[6]
+values
+[6, 6, 5]
+values
+[5, 6, 0, 2]
+entrySet
+values
+[6]
+values
+[2, 1, 6, 6, 6]
+keySet
+clone
+values
+[2, 6]
+keySet
+values
+[4, 6, 3, 1, 2, 1, 5]
+toString
+values
+[6]
+values
+[6]
+values
+[7, 6, 6]
+size
+values
+[2, 6]
+keySet
+values
+[6, 5, 7]
+values
+[6]
+values
+[6]
+values
+[3, 6]
+isEmpty
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6, 0, 0]
+values
+[6]
+values
+[6, 5]
+values
+[7, 6]
+size
+values
+[6]
+values
+[6, 5]
+values
+[6]
+values
+[6, 3, 6]
+values
+[6]
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[4, 4, 6]
+toString
+toString
+values
+[6]
+values
+[5, 6]
+entrySet
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[0, 6]
+hashCode
+values
+[6, 3]
+values
+[2, 6, 1]
+keySet
+values
+[6]
+values
+[4, 5, 5, 6]
+toString
+entrySet
+entrySet
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[6]
+values
+[2, 6, 2]
+keySet
+values
+[4, 3, 6]
+toString
+isEmpty
+values
+[2, 6]
+keySet
+values
+[6, 4, 2]
+values
+[6]
+values
+[6]
+values
