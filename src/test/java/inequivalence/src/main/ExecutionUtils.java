@@ -11,7 +11,7 @@ import static inequivalence.src.main.TraceWritingUtils.createFailingOutputTrace;
 import static inequivalence.src.main.TraceWritingUtils.writeFailingTraceToFile;
 import static org.junit.Assert.assertEquals;
 
-public class Utils {
+public class ExecutionUtils {
 
     // Iterate over the random method choices
     // Invoke them on the objects
@@ -56,7 +56,7 @@ public class Utils {
         }
     }
 
-    public static void assertDefaultContract(Object returnValueFromClassOne, Object returnValueFromClassTwo,
+    private static void assertDefaultContract(Object returnValueFromClassOne, Object returnValueFromClassTwo,
                                               Object classOneObject, Object classTwoObject) {
         // Ensure the return values from the invoked action / method are the same
         assertEquals(returnValueFromClassOne, returnValueFromClassTwo);

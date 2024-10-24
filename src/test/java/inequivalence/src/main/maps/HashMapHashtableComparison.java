@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static inequivalence.src.main.Utils.executeRandomParameterlessMethods;
-import static inequivalence.src.main.Utils.getParameterlessMethodsForClass;
+import static inequivalence.src.main.ExecutionUtils.executeRandomParameterlessMethods;
+import static inequivalence.src.main.ExecutionUtils.getParameterlessMethodsForClass;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JQF.class)

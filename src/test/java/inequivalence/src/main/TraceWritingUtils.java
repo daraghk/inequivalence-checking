@@ -37,7 +37,7 @@ public class TraceWritingUtils {
 
         // Add the proposed actions to the output
         // E.g. Proposed Random Action Trace: [toString, clone, entrySet, size, size]
-        failingTraceOutput.append("\nProposed Random Action Trace: " + actionsAsMethodNames + "\n");
+        failingTraceOutput.append("\nProposed Random Action Trace:\n\t" + actionsAsMethodNames + "\n");
 
 
         // Add the completed actions here to the trace output so it follows the proposed actions
@@ -46,7 +46,7 @@ public class TraceWritingUtils {
                 randomActions.subList(0, indexOfFailingRandomAction + 1),
                 listOfParameterlessCommonMethodSignatures
         );
-        failingTraceOutput.append("Failing Action Trace: " + completedActionsMethodNames  + "\n");
+        failingTraceOutput.append("Failing Action Trace:\n\t" + completedActionsMethodNames  + "\n");
         failingTraceOutput.append("\n");
 
         return failingTraceOutput;
