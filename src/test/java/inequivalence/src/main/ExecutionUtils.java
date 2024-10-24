@@ -34,20 +34,24 @@ public class ExecutionUtils {
                         .get(parameterlessMethodSignature.getName())
                         .invoke(classTwoObject, null);
 
-                // In the 'catch' block, if the assertions in 'assertDefaultContract' fail then print the failing trace
-                try {
-                    assertDefaultContract(
-                            returnValueFromClassOne, returnValueFromClassTwo, classOneObject, classTwoObject
-                    );
-                } catch (AssertionError e) {
+                InequivalenceType assertDefaultContractResult = assertDefaultContract(
+                        returnValueFromClassOne, returnValueFromClassTwo, classOneObject, classTwoObject
+                );
+
+                // If the result is not null then an inequivalence has been detected, according to the default contract
+                if(assertDefaultContractResult != null){
                     // Create the failing output trace
                     StringBuilder failingTraceOutput = createFailingOutputTrace(
-                            randomActions, listOfParameterlessCommonMethodSignatures, classOneObject, classTwoObject, i
+                            assertDefaultContractResult,
+                            randomActions,
+                            listOfParameterlessCommonMethodSignatures,
+                            classOneObject,
+                            classTwoObject,
+                            i
                     );
-
                     // Write the failing trace
                     writeFailingTraceToFile(failingTraceOutput.toString());
-                    throw new RuntimeException(e);
+                    throw new RuntimeException();
                 }
             }
             catch (InvocationTargetException | IOException e){
@@ -56,18 +60,37 @@ public class ExecutionUtils {
         }
     }
 
-    private static void assertDefaultContract(Object returnValueFromClassOne, Object returnValueFromClassTwo,
-                                              Object classOneObject, Object classTwoObject) {
+    private static InequivalenceType assertDefaultContract(
+            Object returnValueFromClassOne,
+            Object returnValueFromClassTwo,
+            Object classOneObject,
+            Object classTwoObject
+    ) {
         // Ensure the return values from the invoked action / method are the same
-        assertEquals(returnValueFromClassOne, returnValueFromClassTwo);
+        try {
+            assertEquals(returnValueFromClassOne, returnValueFromClassTwo);
+        } catch (AssertionError e) {
+            return InequivalenceType.RETURN_VALUES_NOT_EQUAL;
+        }
 
         // Ensure .equals() holds on the objects in question
-        assertEquals(classOneObject, classTwoObject);
-        assertEquals(classTwoObject, classOneObject);
+        try {
+            assertEquals(classOneObject, classTwoObject);
+            assertEquals(classTwoObject, classOneObject);
+        } catch (AssertionError e) {
+            return InequivalenceType.OBJECTS_NOT_EQUAL;
+        }
 
         // Ensure .hashCode() holds on the objects in question
-        assertEquals(classOneObject.hashCode(), classTwoObject.hashCode());
-        assertEquals(classTwoObject.hashCode(), classOneObject.hashCode());
+        try {
+            assertEquals(classOneObject.hashCode(), classTwoObject.hashCode());
+            assertEquals(classTwoObject.hashCode(), classOneObject.hashCode());
+        } catch (AssertionError e) {
+            return InequivalenceType.HASHCODES_NOT_EQUAL;
+        }
+
+        // No assertion is thrown - the default contract holds
+        return null;
     }
 
     public static HashMap<String, Method> getParameterlessMethodsForClass(

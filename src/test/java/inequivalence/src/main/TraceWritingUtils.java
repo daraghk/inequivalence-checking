@@ -14,6 +14,7 @@ import java.util.List;
 public class TraceWritingUtils {
 
     public static StringBuilder createFailingOutputTrace(
+            InequivalenceType inequivalenceType,
             List<Integer> randomActions,
             List<ParsedMethodSignature> listOfParameterlessCommonMethodSignatures,
             Object classOneObject,
@@ -47,6 +48,7 @@ public class TraceWritingUtils {
                 listOfParameterlessCommonMethodSignatures
         );
         failingTraceOutput.append("Failing Action Trace:\n\t" + completedActionsMethodNames  + "\n");
+        failingTraceOutput.append("Inequivalence Type:\n\t" + inequivalenceType  + "\n");
         failingTraceOutput.append("\n");
 
         return failingTraceOutput;
