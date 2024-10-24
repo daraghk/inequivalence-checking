@@ -48,7 +48,14 @@ public class TraceWritingUtils {
                 listOfParameterlessCommonMethodSignatures
         );
         failingTraceOutput.append("Failing Action Trace:\n\t" + completedActionsMethodNames  + "\n");
+
+        // Add details to the trace about the inequivalence type
+        // E.g OBJECTS_NOT_EQUAL
         failingTraceOutput.append("Inequivalence Type:\n\t" + inequivalenceType  + "\n");
+        if (inequivalenceType == InequivalenceType.RETURN_VALUES_NOT_EQUAL){
+            String failingMethodName = completedActionsMethodNames.get(completedActionsMethodNames.size() - 1);
+            failingTraceOutput.append("\tCaused By:\n\t\t" + failingMethodName  + "\n");
+        }
         failingTraceOutput.append("\n");
 
         return failingTraceOutput;
