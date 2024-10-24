@@ -1,22 +1,18 @@
-package inequivalence.benchmarks.app.bisims.paper;
+package inequivalence.benchmarks.bisims;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
-public class Ex3Point5Inequivalence {
+public class Ex3Point5StaticInequivalence {
 
-    private AtomicBoolean flag;
+    private static AtomicBoolean flag = new AtomicBoolean(true);
 
-    public Ex3Point5Inequivalence(boolean initialFlagValue){
-        this.flag = new AtomicBoolean(initialFlagValue);
-    }
-
-    public boolean firstExpression() {
+    public static boolean firstExpression() {
         Supplier<Boolean> v2 = () -> true;
         return v2.get();
     }
 
-    public boolean secondExpression() {
+    public static boolean secondExpression() {
         Supplier<Boolean> v2 = () -> {
             if (flag.get()) {
                 flag.set(false);

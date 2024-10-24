@@ -1,4 +1,4 @@
-package inequivalence.benchmarks.app.bisims.paper;
+package inequivalence.benchmarks.bisims;
 
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;

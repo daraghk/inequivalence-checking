@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -102,5 +103,39 @@ public class CommonMethodSignaturesTest {
                 .containsAll(commonMethodSignatures.getParameterlessCommonMethodSignatures()));
         assertTrue(parsedParameterlessMethodSignatureListForClassTwo
                 .containsAll(commonMethodSignatures.getParameterlessCommonMethodSignatures()));
+    }
+
+    // Todo: HashMap has no methods that only take in primitive parameters - need to reconsider this
+    @Test
+    public void getCommonMethodSignaturesWithPrimitiveParametersSameTestClasses() throws ClassNotFoundException {
+        Class testClassOne = Class.forName("java.util.HashMap");
+        Class testClassTwo = Class.forName("java.util.HashMap");
+        List<String> methodsToAvoid = new ArrayList<>(
+                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
+        );
+        List<ParsedMethodSignature> parsedMethodSignaturesWithPrimitiveParametersForClassOne = new ArrayList<>();
+        for (Method method : testClassOne.getMethods()){
+            if(method.getParameters().length > 0
+                    && !methodsToAvoid.contains(method.getName())){
+                // Check the parameters and ensure that each is primitive
+                boolean allParametersPrimitive = Arrays.stream(method.getParameters())
+                        .allMatch(
+                                parameter -> parameter.getType().isPrimitive()
+                        );
+                if (allParametersPrimitive){
+                    ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+                    parsedMethodSignaturesWithPrimitiveParametersForClassOne.add(parsedMethodSignature);
+                }
+            }
+        }
+
+        CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(testClassOne.getMethods(),
+                testClassTwo.getMethods());
+
+        System.out.println(parsedMethodSignaturesWithPrimitiveParametersForClassOne);
+        assertEquals(commonMethodSignatures.getCommonMethodSignaturesWithPrimitiveParameters().size(),
+                parsedMethodSignaturesWithPrimitiveParametersForClassOne.size());
+        assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithPrimitiveParameters()
+                .containsAll(parsedMethodSignaturesWithPrimitiveParametersForClassOne));
     }
 }

@@ -2,6 +2,7 @@ package inequivalence.src;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -11,6 +12,11 @@ public class CommonMethodSignatures {
     private final HashSet<ParsedMethodSignature> methodSignaturesClassTwo;
     private final HashSet<ParsedMethodSignature> commonMethodSignatures;
     private final HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures;
+    private final HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters;
+
+    private final List<String> methodsToAvoid = new ArrayList<>(
+            List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
+    );
 
     public CommonMethodSignatures(Method[] methodsClassOne, Method[] methodsClassTwo){
         this.methodSignaturesClassOne = getParsedMethodSignatures(methodsClassOne);
@@ -18,6 +24,7 @@ public class CommonMethodSignatures {
         this.commonMethodSignatures = collectCommonMethodSignature();
         // Needs to be constructed after the common method signatures are collected
         this.parameterlessCommonMethodSignatures = collectParameterlessCommonMethodSignature();
+        this.commonMethodSignaturesWithPrimitiveParameters = collectCommonMethodSignaturesWithPrimitiveParameters();
     }
 
     private HashSet<ParsedMethodSignature> getParsedMethodSignatures(Method[] methods){
@@ -37,17 +44,33 @@ public class CommonMethodSignatures {
     }
 
     private HashSet<ParsedMethodSignature> collectParameterlessCommonMethodSignature(){
-        List<String> methodsToAvoid = new ArrayList<>(
-                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
-        );
         HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures = new HashSet<>();
         for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
             if(methodSignature.getParameters().length == 0
-                    && !methodsToAvoid.contains(methodSignature.getName())){
+                    && !this.methodsToAvoid.contains(methodSignature.getName())){
                 parameterlessCommonMethodSignatures.add(methodSignature);
             }
         }
         return parameterlessCommonMethodSignatures;
+    }
+
+    private HashSet<ParsedMethodSignature> collectCommonMethodSignaturesWithPrimitiveParameters(){
+        HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters = new HashSet<>();
+        for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
+            // If the method has parameters and is not in the 'avoid' list
+            if(methodSignature.getParameters().length > 0
+                    && !this.methodsToAvoid.contains(methodSignature.getName())){
+                // Check the parameters and ensure that each is primitive
+                boolean allParametersPrimitive = Arrays.stream(methodSignature.getParameters())
+                        .allMatch(
+                                parameter -> parameter.getType().isPrimitive()
+                        );
+                if (allParametersPrimitive) {
+                    commonMethodSignaturesWithPrimitiveParameters.add(methodSignature);
+                }
+            }
+        }
+        return commonMethodSignaturesWithPrimitiveParameters;
     }
 
     public HashSet<ParsedMethodSignature> getCommonMethodSignatures() {
@@ -56,5 +79,9 @@ public class CommonMethodSignatures {
 
     public HashSet<ParsedMethodSignature> getParameterlessCommonMethodSignatures() {
         return parameterlessCommonMethodSignatures;
+    }
+
+    public HashSet<ParsedMethodSignature> getCommonMethodSignaturesWithPrimitiveParameters() {
+        return commonMethodSignaturesWithPrimitiveParameters;
     }
 }
