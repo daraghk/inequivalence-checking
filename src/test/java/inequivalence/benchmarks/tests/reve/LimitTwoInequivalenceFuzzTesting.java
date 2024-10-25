@@ -1,23 +1,23 @@
-package inequivalence.benchmarks.reve;
+package inequivalence.benchmarks.tests.reve;
 
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.junit.runner.RunWith;
 
-import static inequivalence.benchmarks.reve.LoopFiveInequivalence.loopFiveNew;
-import static inequivalence.benchmarks.reve.LoopFiveInequivalence.loopFiveOriginal;
+import static inequivalence.benchmarks.code.reve.LimitTwoInequivalence.limitTwoNew;
+import static inequivalence.benchmarks.code.reve.LimitTwoInequivalence.limitTwoOriginal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 @RunWith(JQF.class)
-public class LoopFiveInequivalenceFuzzTesting {
+public class LimitTwoInequivalenceFuzzTesting {
 
     @Fuzz
-    public void loopFiveComparison(int x) {
+    public void limitTwoComparison(int x) {
         boolean originalResultsInDivergence = false;
         int originalResult = Integer.MIN_VALUE;
         try {
-            originalResult = loopFiveOriginal(x);
+            originalResult = limitTwoOriginal(x);
         } catch (Throwable e) {
             originalResultsInDivergence = true;
         }
@@ -25,7 +25,7 @@ public class LoopFiveInequivalenceFuzzTesting {
         boolean newResultsinDivergence = false;
         int newResult = Integer.MIN_VALUE;
         try {
-            newResult = loopFiveNew(x);
+            newResult = limitTwoNew(x);
         } catch (Throwable e){
             newResultsinDivergence = true;
         }

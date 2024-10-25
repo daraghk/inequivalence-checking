@@ -1,7 +1,5 @@
 package inequivalence.src.main;
 
-import inequivalence.src.ParsedMethodSignature;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

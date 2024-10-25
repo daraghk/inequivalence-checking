@@ -1,7 +1,7 @@
 package inequivalence.src.test;
 
-import inequivalence.src.CommonMethodSignatures;
-import inequivalence.src.ParsedMethodSignature;
+import inequivalence.src.main.CommonMethodSignatures;
+import inequivalence.src.main.ParsedMethodSignature;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
@@ -34,7 +34,7 @@ public class CommonMethodSignaturesTest {
     }
 
     @Test
-    public void getCommonMethodSignaturesSameDifferentClasses() throws ClassNotFoundException {
+    public void getCommonMethodSignaturesDifferentTestClasses() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.TreeMap");
 
@@ -137,5 +137,29 @@ public class CommonMethodSignaturesTest {
                 parsedMethodSignaturesWithPrimitiveParametersForClassOne.size());
         assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithPrimitiveParameters()
                 .containsAll(parsedMethodSignaturesWithPrimitiveParametersForClassOne));
+    }
+    @Test
+    public void testingTheHashingOfPutMethodSignaturesBetweenDifferentMaps() throws ClassNotFoundException {
+        Class testClassOne = Class.forName("java.util.HashMap");
+        Class testClassTwo = Class.forName("java.util.TreeMap");
+
+        int hashCodeOfPutFromClassOne = 0;
+        for (Method method : testClassOne.getMethods()){
+            ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+            if (method.getName().equals("put")){
+                hashCodeOfPutFromClassOne = parsedMethodSignature.hashCode();
+            }
+        }
+
+        int hashCodeOfPutFromClassTwo = 0;
+        for (Method method : testClassTwo.getMethods()){
+            ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+            if (method.getName().equals("put")){
+                hashCodeOfPutFromClassTwo = parsedMethodSignature.hashCode();
+            }
+        }
+
+        assertTrue(hashCodeOfPutFromClassOne != 0 && hashCodeOfPutFromClassTwo !=0);
+        assertEquals(hashCodeOfPutFromClassOne, hashCodeOfPutFromClassTwo);
     }
 }

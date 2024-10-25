@@ -1,4 +1,4 @@
-package inequivalence.benchmarks.bisims;
+package inequivalence.benchmarks.code.bisims;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;

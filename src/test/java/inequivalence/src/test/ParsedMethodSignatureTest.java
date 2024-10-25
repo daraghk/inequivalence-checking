@@ -1,6 +1,6 @@
 package inequivalence.src.test;
 
-import inequivalence.src.ParsedMethodSignature;
+import inequivalence.src.main.ParsedMethodSignature;
 import org.junit.Test;
 
 import java.lang.reflect.Method;

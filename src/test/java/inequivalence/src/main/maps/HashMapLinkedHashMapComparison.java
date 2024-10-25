@@ -4,8 +4,8 @@ import com.pholser.junit.quickcheck.generator.InRange;
 import com.pholser.junit.quickcheck.generator.Size;
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
-import inequivalence.src.CommonMethodSignatures;
-import inequivalence.src.ParsedMethodSignature;
+import inequivalence.src.main.CommonMethodSignatures;
+import inequivalence.src.main.ParsedMethodSignature;
 import org.junit.runner.RunWith;
 
 import java.lang.reflect.Method;

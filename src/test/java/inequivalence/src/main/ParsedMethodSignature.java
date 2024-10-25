@@ -1,8 +1,7 @@
-package inequivalence.src;
+package inequivalence.src.main;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class ParsedMethodSignature {
@@ -22,13 +21,16 @@ public class ParsedMethodSignature {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ParsedMethodSignature that = (ParsedMethodSignature) o;
-        return Objects.equals(name, that.name) && Objects.equals(returnType, that.returnType)
-                && Objects.deepEquals(parameters, that.parameters);
+        return Objects.equals(name, that.name) && Objects.equals(returnType, that.returnType);
+                // Todo: Clarify leaving this out, should two methods be considered equal if their parameters differ?
+                //&& Arrays.equals(parameters, that.parameters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, returnType, Arrays.hashCode(parameters));
+        // Todo: Again, should two methods be considered equal if their parameters differ?
+        // return Objects.hash(name, returnType, Arrays.hashCode(parameters));
+        return Objects.hash(name, returnType);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package inequivalence.src.main;
 
-import inequivalence.src.ParsedMethodSignature;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

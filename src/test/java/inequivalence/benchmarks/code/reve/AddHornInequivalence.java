@@ -1,4 +1,4 @@
-package inequivalence.benchmarks.reve;
+package inequivalence.benchmarks.code.reve;
 
 public class AddHornInequivalence {
 

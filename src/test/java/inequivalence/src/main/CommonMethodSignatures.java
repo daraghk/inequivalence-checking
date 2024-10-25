@@ -1,4 +1,4 @@
-package inequivalence.src;
+package inequivalence.src.main;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -83,5 +83,16 @@ public class CommonMethodSignatures {
 
     public HashSet<ParsedMethodSignature> getCommonMethodSignaturesWithPrimitiveParameters() {
         return commonMethodSignaturesWithPrimitiveParameters;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
+            stringBuilder.append(methodSignature + ", ");
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 }

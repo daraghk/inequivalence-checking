@@ -1,11 +1,11 @@
-package inequivalence.benchmarks.reve;
+package inequivalence.benchmarks.tests.reve;
 
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.junit.runner.RunWith;
 
-import static inequivalence.benchmarks.reve.AddHornInequivalence.addHornNew;
-import static inequivalence.benchmarks.reve.AddHornInequivalence.addHornOriginal;
+import static inequivalence.benchmarks.code.reve.AddHornInequivalence.addHornNew;
+import static inequivalence.benchmarks.code.reve.AddHornInequivalence.addHornOriginal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 

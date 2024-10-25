@@ -1,11 +1,11 @@
-package inequivalence.benchmarks.reve;
+package inequivalence.benchmarks.tests.reve;
 
 import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.junit.runner.RunWith;
 
-import static inequivalence.benchmarks.reve.LimitOneInequivalence.limitOneNew;
-import static inequivalence.benchmarks.reve.LimitOneInequivalence.limitOneOriginal;
+import static inequivalence.benchmarks.code.reve.LimitOneInequivalence.limitOneNew;
+import static inequivalence.benchmarks.code.reve.LimitOneInequivalence.limitOneOriginal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
