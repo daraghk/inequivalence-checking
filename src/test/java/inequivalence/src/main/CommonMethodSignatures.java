@@ -12,7 +12,7 @@ public class CommonMethodSignatures {
     private final HashSet<ParsedMethodSignature> methodSignaturesClassTwo;
     private final HashSet<ParsedMethodSignature> commonMethodSignatures;
     private final HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures;
-    private final HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters;
+    private final HashSet<ParsedMethodSignature> commonMethodSignaturesWithParameters;
 
     private final List<String> methodsToAvoid = new ArrayList<>(
             List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
@@ -24,7 +24,7 @@ public class CommonMethodSignatures {
         this.commonMethodSignatures = collectCommonMethodSignature();
         // Needs to be constructed after the common method signatures are collected
         this.parameterlessCommonMethodSignatures = collectParameterlessCommonMethodSignature();
-        this.commonMethodSignaturesWithPrimitiveParameters = collectCommonMethodSignaturesWithPrimitiveParameters();
+        this.commonMethodSignaturesWithParameters = collectCommonMethodSignaturesWithParameters();
     }
 
     private HashSet<ParsedMethodSignature> getParsedMethodSignatures(Method[] methods){
@@ -54,20 +54,13 @@ public class CommonMethodSignatures {
         return parameterlessCommonMethodSignatures;
     }
 
-    private HashSet<ParsedMethodSignature> collectCommonMethodSignaturesWithPrimitiveParameters(){
+    private HashSet<ParsedMethodSignature> collectCommonMethodSignaturesWithParameters(){
         HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters = new HashSet<>();
         for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
             // If the method has parameters and is not in the 'avoid' list
             if(methodSignature.getParameters().length > 0
                     && !this.methodsToAvoid.contains(methodSignature.getName())){
-                // Check the parameters and ensure that each is primitive
-                boolean allParametersPrimitive = Arrays.stream(methodSignature.getParameters())
-                        .allMatch(
-                                parameter -> parameter.getType().isPrimitive()
-                        );
-                if (allParametersPrimitive) {
-                    commonMethodSignaturesWithPrimitiveParameters.add(methodSignature);
-                }
+                commonMethodSignaturesWithPrimitiveParameters.add(methodSignature);
             }
         }
         return commonMethodSignaturesWithPrimitiveParameters;
@@ -81,8 +74,8 @@ public class CommonMethodSignatures {
         return parameterlessCommonMethodSignatures;
     }
 
-    public HashSet<ParsedMethodSignature> getCommonMethodSignaturesWithPrimitiveParameters() {
-        return commonMethodSignaturesWithPrimitiveParameters;
+    public HashSet<ParsedMethodSignature> getCommonMethodSignaturesWithParameters() {
+        return commonMethodSignaturesWithParameters;
     }
 
     @Override

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -105,39 +104,58 @@ public class CommonMethodSignaturesTest {
                 .containsAll(commonMethodSignatures.getParameterlessCommonMethodSignatures()));
     }
 
-    // Todo: HashMap has no methods that only take in primitive parameters - need to reconsider this
     @Test
-    public void getCommonMethodSignaturesWithPrimitiveParametersSameTestClasses() throws ClassNotFoundException {
+    public void getCommonMethodSignaturesWithParametersSameTestClasses() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.HashMap");
         List<String> methodsToAvoid = new ArrayList<>(
                 List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
         );
-        List<ParsedMethodSignature> parsedMethodSignaturesWithPrimitiveParametersForClassOne = new ArrayList<>();
+        List<ParsedMethodSignature> parsedMethodSignaturesWithParametersForClassOne = new ArrayList<>();
         for (Method method : testClassOne.getMethods()){
             if(method.getParameters().length > 0
                     && !methodsToAvoid.contains(method.getName())){
-                // Check the parameters and ensure that each is primitive
-                boolean allParametersPrimitive = Arrays.stream(method.getParameters())
-                        .allMatch(
-                                parameter -> parameter.getType().isPrimitive()
-                        );
-                if (allParametersPrimitive){
-                    ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
-                    parsedMethodSignaturesWithPrimitiveParametersForClassOne.add(parsedMethodSignature);
-                }
+                ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+                parsedMethodSignaturesWithParametersForClassOne.add(parsedMethodSignature);
             }
         }
 
         CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(testClassOne.getMethods(),
                 testClassTwo.getMethods());
 
-        System.out.println(parsedMethodSignaturesWithPrimitiveParametersForClassOne);
-        assertEquals(commonMethodSignatures.getCommonMethodSignaturesWithPrimitiveParameters().size(),
-                parsedMethodSignaturesWithPrimitiveParametersForClassOne.size());
-        assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithPrimitiveParameters()
-                .containsAll(parsedMethodSignaturesWithPrimitiveParametersForClassOne));
+        System.out.println(parsedMethodSignaturesWithParametersForClassOne);
+        assertEquals(commonMethodSignatures.getCommonMethodSignaturesWithParameters().size(),
+                parsedMethodSignaturesWithParametersForClassOne.size());
+        assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithParameters()
+                .containsAll(parsedMethodSignaturesWithParametersForClassOne));
     }
+
+    @Test
+    public void getCommonMethodSignaturesWithParametersDifferentTestClasses() throws ClassNotFoundException {
+        Class testClassOne = Class.forName("java.util.HashMap");
+        Class testClassTwo = Class.forName("java.util.TreeMap");
+        List<String> methodsToAvoid = new ArrayList<>(
+                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
+        );
+        List<ParsedMethodSignature> parsedMethodSignaturesWithParametersForClassOne = new ArrayList<>();
+        for (Method method : testClassOne.getMethods()){
+            if(method.getParameters().length > 0
+                    && !methodsToAvoid.contains(method.getName())){
+                ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+                parsedMethodSignaturesWithParametersForClassOne.add(parsedMethodSignature);
+            }
+        }
+
+        CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(testClassOne.getMethods(),
+                testClassTwo.getMethods());
+
+        System.out.println(parsedMethodSignaturesWithParametersForClassOne);
+        assertEquals(commonMethodSignatures.getCommonMethodSignaturesWithParameters().size(),
+                parsedMethodSignaturesWithParametersForClassOne.size());
+        assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithParameters()
+                .containsAll(parsedMethodSignaturesWithParametersForClassOne));
+    }
+
     @Test
     public void testingTheHashingOfPutMethodSignaturesBetweenDifferentMaps() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");

@@ -67,4 +67,54 @@ public class HashMapHashtableComparison {
                 parameterlessMethodsFromClassTwo, classTwoObject
         );
     }
+
+    @Fuzz
+    public void compareUsingMethodsWithParameters(
+            HashMap<Integer, Integer> hashMap,
+            @Size(min=1, max=100) List<@InRange(min = "0", max = "20") Integer> randomActions
+    ) throws
+            ClassNotFoundException,
+            IllegalAccessException
+    {
+        Hashtable<Integer, Integer> hashtable = new Hashtable();
+        hashtable.putAll(hashMap);
+
+        // Create Classes for the data structures passed in
+        Class classOne = Class.forName(hashMap.getClass().getName());
+        Class classTwo = Class.forName(hashtable.getClass().getName());
+
+        // Create Object types from the classes in question
+        Object classOneObject = hashMap;
+        Object classTwoObject = hashtable;
+
+        // Collect the common method signatures and the parameterless common method signatures
+        CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(
+                classOne.getMethods(),
+                classTwo.getMethods());
+        HashSet<ParsedMethodSignature> commonMethodSignaturesWithParameters = commonMethodSignatures
+                .getCommonMethodSignaturesWithParameters();
+
+        // Collect the full parameterless methods for invocation from class one and two
+        HashMap<String, Method> parameterlessMethodsFromClassOne = getParameterlessMethodsForClass(classOne,
+                commonMethodSignaturesWithParameters);
+        HashMap<String, Method> parameterlessMethodsFromClassTwo = getParameterlessMethodsForClass(classTwo,
+                commonMethodSignaturesWithParameters);
+
+        // Assert that the number of parameterless methods from each class is the same
+        assertEquals(parameterlessMethodsFromClassOne.size(), parameterlessMethodsFromClassTwo.size());
+
+        // Create a list of the parameterlessCommonMethodSignatures so that they can be chosen easily
+        List<ParsedMethodSignature> listOfParameterlessCommonMethodSignatures = new ArrayList<>(
+                commonMethodSignaturesWithParameters);
+
+        // Filter out the initial random 'actions' given that do not actually correspond to a parameterless method
+        randomActions.removeIf(action -> action >= listOfParameterlessCommonMethodSignatures.size());
+
+        executeRandomParameterlessMethods(
+                randomActions,
+                listOfParameterlessCommonMethodSignatures,
+                parameterlessMethodsFromClassOne, classOneObject,
+                parameterlessMethodsFromClassTwo, classTwoObject
+        );
+    }
 }

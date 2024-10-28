@@ -58,6 +58,53 @@ public class ExecutionUtils {
         }
     }
 
+    // Iterate over the random method choices
+    // Invoke them on the objects
+    // Ensure the default contract
+    public static void executeRandomMethodsWithParameters(
+            List<Integer> randomActions,
+            List<ParsedMethodSignature> listOCommonMethodSignaturesWithParameters,
+            HashMap<String, Method> parameterlessMethodsFromClassOne, Object classOneObject,
+            HashMap<String, Method> parameterlessMethodsFromClassTwo, Object classTwoObject
+    ) throws IllegalAccessException {
+        for(int i = 0; i < randomActions.size(); i++){
+            int randomMethodChoice = randomActions.get(i);
+            ParsedMethodSignature methodSignatureWithParameters = listOCommonMethodSignaturesWithParameters
+                    .get(randomMethodChoice);
+            try {
+                Object returnValueFromClassOne = parameterlessMethodsFromClassOne
+                        .get(methodSignatureWithParameters.getName())
+                        .invoke(classOneObject, null);
+                Object returnValueFromClassTwo = parameterlessMethodsFromClassTwo
+                        .get(methodSignatureWithParameters.getName())
+                        .invoke(classTwoObject, null);
+
+                InequivalenceType assertDefaultContractResult = assertDefaultContract(
+                        returnValueFromClassOne, returnValueFromClassTwo, classOneObject, classTwoObject
+                );
+
+                // If the result is not null then an inequivalence has been detected, according to the default contract
+                if(assertDefaultContractResult != null){
+                    // Create the failing output trace
+                    StringBuilder failingTraceOutput = createFailingOutputTrace(
+                            assertDefaultContractResult,
+                            randomActions,
+                            listOCommonMethodSignaturesWithParameters,
+                            classOneObject,
+                            classTwoObject,
+                            i
+                    );
+                    // Write the failing trace
+                    writeFailingTraceToFile(failingTraceOutput.toString());
+                    throw new RuntimeException();
+                }
+            }
+            catch (InvocationTargetException | IOException e){
+                System.out.println(e);
+            }
+        }
+    }
+
     private static InequivalenceType assertDefaultContract(
             Object returnValueFromClassOne,
             Object returnValueFromClassTwo,
