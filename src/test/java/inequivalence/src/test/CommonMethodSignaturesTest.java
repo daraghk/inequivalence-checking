@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -43,11 +44,17 @@ public class CommonMethodSignaturesTest {
             parsedMethodSignatureListForClassOne.add(parsedMethodSignature);
         }
 
+        List<ParsedMethodSignature> parsedMethodSignatureListForClassTwo = new ArrayList<>();
+        for (Method method : testClassTwo.getMethods()){
+            ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+            parsedMethodSignatureListForClassTwo.add(parsedMethodSignature);
+        }
+
         CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(testClassOne.getMethods(),
                 testClassTwo.getMethods());
 
-        assertTrue(commonMethodSignatures.getCommonMethodSignatures().size() <
-                parsedMethodSignatureListForClassOne.size());
+        assertTrue(parsedMethodSignatureListForClassOne.containsAll(commonMethodSignatures.getCommonMethodSignatures()));
+        assertTrue(parsedMethodSignatureListForClassTwo.containsAll(commonMethodSignatures.getCommonMethodSignatures()));
     }
 
     @Test
@@ -108,13 +115,10 @@ public class CommonMethodSignaturesTest {
     public void getCommonMethodSignaturesWithParametersSameTestClasses() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.HashMap");
-        List<String> methodsToAvoid = new ArrayList<>(
-                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
-        );
+
         List<ParsedMethodSignature> parsedMethodSignaturesWithParametersForClassOne = new ArrayList<>();
         for (Method method : testClassOne.getMethods()){
-            if(method.getParameters().length > 0
-                    && !methodsToAvoid.contains(method.getName())){
+            if(method.getParameters().length > 0){
                 ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
                 parsedMethodSignaturesWithParametersForClassOne.add(parsedMethodSignature);
             }
@@ -134,13 +138,9 @@ public class CommonMethodSignaturesTest {
     public void getCommonMethodSignaturesWithParametersDifferentTestClasses() throws ClassNotFoundException {
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.TreeMap");
-        List<String> methodsToAvoid = new ArrayList<>(
-                List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
-        );
         List<ParsedMethodSignature> parsedMethodSignaturesWithParametersForClassOne = new ArrayList<>();
         for (Method method : testClassOne.getMethods()){
-            if(method.getParameters().length > 0
-                    && !methodsToAvoid.contains(method.getName())){
+            if(method.getParameters().length > 0){
                 ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
                 parsedMethodSignaturesWithParametersForClassOne.add(parsedMethodSignature);
             }
@@ -149,7 +149,6 @@ public class CommonMethodSignaturesTest {
         CommonMethodSignatures commonMethodSignatures = new CommonMethodSignatures(testClassOne.getMethods(),
                 testClassTwo.getMethods());
 
-        System.out.println(parsedMethodSignaturesWithParametersForClassOne);
         assertEquals(commonMethodSignatures.getCommonMethodSignaturesWithParameters().size(),
                 parsedMethodSignaturesWithParametersForClassOne.size());
         assertTrue(commonMethodSignatures.getCommonMethodSignaturesWithParameters()
@@ -158,6 +157,8 @@ public class CommonMethodSignaturesTest {
 
     @Test
     public void testingTheHashingOfPutMethodSignaturesBetweenDifferentMaps() throws ClassNotFoundException {
+        // Put methods (with the same return types and parameters) from different map implementations should
+        // hash to the same value and thus be regarded as being the 'same'
         Class testClassOne = Class.forName("java.util.HashMap");
         Class testClassTwo = Class.forName("java.util.TreeMap");
 
@@ -179,5 +180,28 @@ public class CommonMethodSignaturesTest {
 
         assertTrue(hashCodeOfPutFromClassOne != 0 && hashCodeOfPutFromClassTwo !=0);
         assertEquals(hashCodeOfPutFromClassOne, hashCodeOfPutFromClassTwo);
+    }
+
+    @Test
+    public void testToEnsureMethodsWithTheSameNameAndReturnTypeButDifferentParametersHashToDifferentValues()
+            throws ClassNotFoundException {
+        Class testClass = Class.forName("java.util.HashMap");
+
+        // A bug was found that meant that 3 'wait' methods on HashMap (with the same name and return type)
+        // with different parameters were hashing to the same value through ParsedMethodSignature
+        // This test seeks to ensure this is not the case any longer
+        int expectedNumberUniqueWaitMethods = 3;
+        List<ParsedMethodSignature> waitMethods = new ArrayList<>();
+        for (Method method : testClass.getMethods()){
+            ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
+            if (parsedMethodSignature.getName().equals("wait")){
+                waitMethods.add(parsedMethodSignature);
+            }
+        }
+
+        HashSet<ParsedMethodSignature> setOfWaitMethods = new HashSet<>();
+        setOfWaitMethods.addAll(waitMethods);
+        assertEquals(waitMethods.size(), expectedNumberUniqueWaitMethods);
+        assertEquals(setOfWaitMethods.size(), expectedNumberUniqueWaitMethods);
     }
 }

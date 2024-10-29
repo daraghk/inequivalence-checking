@@ -2,7 +2,6 @@ package inequivalence.src.main;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class CommonMethodSignatures {
     private final HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures;
     private final HashSet<ParsedMethodSignature> commonMethodSignaturesWithParameters;
 
-    private final List<String> methodsToAvoid = new ArrayList<>(
+    private final List<String> parameterlessMethodToAvoid = new ArrayList<>(
             List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
     );
 
@@ -47,7 +46,7 @@ public class CommonMethodSignatures {
         HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures = new HashSet<>();
         for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
             if(methodSignature.getParameters().length == 0
-                    && !this.methodsToAvoid.contains(methodSignature.getName())){
+                    && !this.parameterlessMethodToAvoid.contains(methodSignature.getName())){
                 parameterlessCommonMethodSignatures.add(methodSignature);
             }
         }
@@ -57,9 +56,8 @@ public class CommonMethodSignatures {
     private HashSet<ParsedMethodSignature> collectCommonMethodSignaturesWithParameters(){
         HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters = new HashSet<>();
         for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
-            // If the method has parameters and is not in the 'avoid' list
-            if(methodSignature.getParameters().length > 0
-                    && !this.methodsToAvoid.contains(methodSignature.getName())){
+            // If the method has parameters
+            if(methodSignature.getParameters().length > 0){
                 commonMethodSignaturesWithPrimitiveParameters.add(methodSignature);
             }
         }
