@@ -1,8 +1,7 @@
 package inequivalence.src.main;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.*;
 
 import static inequivalence.src.main.TraceWritingUtils.createFailingOutputTrace;
@@ -17,19 +16,19 @@ public class ExecutionUtils {
     public static void executeRandomParameterlessMethods(
             List<Integer> randomActions,
             List<ParsedMethodSignature> listOfParameterlessCommonMethodSignatures,
-            HashMap<String, Method> parameterlessMethodsFromClassOne, Object classOneObject,
-            HashMap<String, Method> parameterlessMethodsFromClassTwo, Object classTwoObject
-    ) throws IllegalAccessException {
+            HashMap<ParsedMethodSignature, Method> parameterlessMethodsFromClassOne, Object classOneObject,
+            HashMap<ParsedMethodSignature, Method> parameterlessMethodsFromClassTwo, Object classTwoObject
+    ) {
         for(int i = 0; i < randomActions.size(); i++){
             int randomMethodChoice = randomActions.get(i);
             ParsedMethodSignature parameterlessMethodSignature = listOfParameterlessCommonMethodSignatures
                     .get(randomMethodChoice);
             try {
                 Object returnValueFromClassOne = parameterlessMethodsFromClassOne
-                        .get(parameterlessMethodSignature.getName())
+                        .get(parameterlessMethodSignature)
                         .invoke(classOneObject, null);
                 Object returnValueFromClassTwo = parameterlessMethodsFromClassTwo
-                        .get(parameterlessMethodSignature.getName())
+                        .get(parameterlessMethodSignature)
                         .invoke(classTwoObject, null);
 
                 InequivalenceType assertDefaultContractResult = assertDefaultContract(
@@ -49,10 +48,10 @@ public class ExecutionUtils {
                     );
                     // Write the failing trace
                     writeFailingTraceToFile(failingTraceOutput.toString());
-                    throw new RuntimeException();
+                    throw new AssertionError(failingTraceOutput);
                 }
             }
-            catch (InvocationTargetException | IOException e){
+            catch (InvocationTargetException | IOException | IllegalAccessException e){
                 System.out.println(e);
             }
         }
@@ -63,21 +62,28 @@ public class ExecutionUtils {
     // Ensure the default contract
     public static void executeRandomMethodsWithParameters(
             List<Integer> randomActions,
-            List<ParsedMethodSignature> listOCommonMethodSignaturesWithParameters,
-            HashMap<String, Method> parameterlessMethodsFromClassOne, Object classOneObject,
-            HashMap<String, Method> parameterlessMethodsFromClassTwo, Object classTwoObject
-    ) throws IllegalAccessException {
+            List<ParsedMethodSignature> listOfCommonMethodSignaturesWithParameters,
+            HashMap<ParsedMethodSignature, Method> methodsWithParametersFromClassOne, Object classOneObject,
+            HashMap<ParsedMethodSignature, Method> methodsWithParametersFromClassTwo, Object classTwoObject
+    ) {
         for(int i = 0; i < randomActions.size(); i++){
             int randomMethodChoice = randomActions.get(i);
-            ParsedMethodSignature methodSignatureWithParameters = listOCommonMethodSignaturesWithParameters
+            ParsedMethodSignature methodSignatureWithParameters = listOfCommonMethodSignaturesWithParameters
                     .get(randomMethodChoice);
+
+            // Create 'random' args like this for now
+            ArrayList<Object> randomMethodArgs = new ArrayList<>();
+            Random random = new Random();
+            for (Parameter parameter : methodSignatureWithParameters.getParameters()){
+                randomMethodArgs.add(random.nextInt());
+            }
             try {
-                Object returnValueFromClassOne = parameterlessMethodsFromClassOne
-                        .get(methodSignatureWithParameters.getName())
-                        .invoke(classOneObject, null);
-                Object returnValueFromClassTwo = parameterlessMethodsFromClassTwo
-                        .get(methodSignatureWithParameters.getName())
-                        .invoke(classTwoObject, null);
+                Object returnValueFromClassOne = methodsWithParametersFromClassOne
+                        .get(methodSignatureWithParameters)
+                        .invoke(classOneObject, randomMethodArgs.toArray());
+                Object returnValueFromClassTwo = methodsWithParametersFromClassTwo
+                        .get(methodSignatureWithParameters)
+                        .invoke(classTwoObject, randomMethodArgs.toArray());
 
                 InequivalenceType assertDefaultContractResult = assertDefaultContract(
                         returnValueFromClassOne, returnValueFromClassTwo, classOneObject, classTwoObject
@@ -89,17 +95,17 @@ public class ExecutionUtils {
                     StringBuilder failingTraceOutput = createFailingOutputTrace(
                             assertDefaultContractResult,
                             randomActions,
-                            listOCommonMethodSignaturesWithParameters,
+                            listOfCommonMethodSignaturesWithParameters,
                             classOneObject,
                             classTwoObject,
                             i
                     );
                     // Write the failing trace
                     writeFailingTraceToFile(failingTraceOutput.toString());
-                    throw new RuntimeException();
+                    throw new AssertionError(failingTraceOutput);
                 }
             }
-            catch (InvocationTargetException | IOException e){
+            catch (InvocationTargetException | IOException | IllegalAccessException e){
                 System.out.println(e);
             }
         }
@@ -138,17 +144,17 @@ public class ExecutionUtils {
         return null;
     }
 
-    public static HashMap<String, Method> getParameterlessMethodsForClass(
+    public static HashMap<ParsedMethodSignature, Method> getFullMethodsFromCommonMethodSignatures(
             Class classGiven,
-            HashSet<ParsedMethodSignature> parameterlessCommonMethodSignatures
+            HashSet<ParsedMethodSignature> commonMethodSignatures
     ) {
-        HashMap<String, Method> parameterlessFullMethodsFromClass = new HashMap<>();
+        HashMap<ParsedMethodSignature, Method> fullMethodsFromClass = new HashMap<>();
         for (Method method : classGiven.getMethods()) {
             ParsedMethodSignature parsedMethodSignature = new ParsedMethodSignature(method);
-            if (parameterlessCommonMethodSignatures.contains(parsedMethodSignature)) {
-                parameterlessFullMethodsFromClass.put(method.getName(), method);
+            if (commonMethodSignatures.contains(parsedMethodSignature)) {
+                fullMethodsFromClass.put(parsedMethodSignature, method);
             }
         }
-        return parameterlessFullMethodsFromClass;
+        return fullMethodsFromClass;
     }
 }

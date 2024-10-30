@@ -1,6 +1,7 @@
 package inequivalence.src.main;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +16,10 @@ public class CommonMethodSignatures {
 
     private final List<String> parameterlessMethodToAvoid = new ArrayList<>(
             List.of(new String[]{"wait", "notify", "notifyAll", "getClass", "clear"})
+    );
+
+    private final List<String> methodsWithParametersToAvoid = new ArrayList<>(
+            List.of(new String[]{"wait"})
     );
 
     public CommonMethodSignatures(Method[] methodsClassOne, Method[] methodsClassTwo){
@@ -54,15 +59,32 @@ public class CommonMethodSignatures {
     }
 
     private HashSet<ParsedMethodSignature> collectCommonMethodSignaturesWithParameters(){
-        HashSet<ParsedMethodSignature> commonMethodSignaturesWithPrimitiveParameters = new HashSet<>();
+        HashSet<ParsedMethodSignature> commonMethodSignaturesWithParameters = new HashSet<>();
         for (ParsedMethodSignature methodSignature : this.commonMethodSignatures){
             // If the method has parameters
-            if(methodSignature.getParameters().length > 0){
-                commonMethodSignaturesWithPrimitiveParameters.add(methodSignature);
+            if(methodSignature.getParameters().length > 0
+                && !this.methodsWithParametersToAvoid.contains(methodSignature.getName())){
+                boolean includeFlag = checkAllParametersAreEitherPrimitiveOrKeyValueTypes(methodSignature);
+                if (includeFlag){
+                    commonMethodSignaturesWithParameters.add(methodSignature);
+                }
             }
         }
-        return commonMethodSignaturesWithPrimitiveParameters;
+        return commonMethodSignaturesWithParameters;
     }
+
+    private static boolean checkAllParametersAreEitherPrimitiveOrKeyValueTypes(ParsedMethodSignature methodSignature) {
+        boolean includeFlag = true;
+        for (Parameter parameter : methodSignature.getParameters()){
+            if (!(parameter.getType().isPrimitive()
+                    || parameter.getParameterizedType().getTypeName().equals("K")
+                    || parameter.getParameterizedType().getTypeName().equals("V"))){
+                includeFlag = false;
+            }
+        }
+        return includeFlag;
+    }
+
 
     public HashSet<ParsedMethodSignature> getCommonMethodSignatures() {
         return commonMethodSignatures;

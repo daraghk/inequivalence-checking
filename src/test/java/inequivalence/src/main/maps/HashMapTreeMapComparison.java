@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 import static inequivalence.src.main.ExecutionUtils.executeRandomParameterlessMethods;
-import static inequivalence.src.main.ExecutionUtils.getParameterlessMethodsForClass;
+import static inequivalence.src.main.ExecutionUtils.getFullMethodsFromCommonMethodSignatures;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JQF.class)
@@ -23,9 +23,7 @@ public class HashMapTreeMapComparison {
             HashMap<Integer, Integer> hashMap,
             @Size(min=1, max=100) List<@InRange(min = "0", max = "20") Integer> randomActions
     ) throws
-            ClassNotFoundException,
-            IllegalAccessException
-    {
+            ClassNotFoundException {
         TreeMap<Integer, Integer> treeMap = new TreeMap<>();
         treeMap.putAll(hashMap);
 
@@ -45,9 +43,9 @@ public class HashMapTreeMapComparison {
                 .getParameterlessCommonMethodSignatures();
 
         // Collect the full parameterless methods for invocation from class one and two
-        HashMap<String, Method> parameterlessMethodsFromClassOne = getParameterlessMethodsForClass(classOne,
+        HashMap<ParsedMethodSignature, Method> parameterlessMethodsFromClassOne = getFullMethodsFromCommonMethodSignatures(classOne,
                 parameterlessCommonMethodSignatures);
-        HashMap<String, Method> parameterlessMethodsFromClassTwo = getParameterlessMethodsForClass(classTwo,
+        HashMap<ParsedMethodSignature, Method> parameterlessMethodsFromClassTwo = getFullMethodsFromCommonMethodSignatures(classTwo,
                 parameterlessCommonMethodSignatures);
 
         // Assert that the number of parameterless methods from each class is the same
